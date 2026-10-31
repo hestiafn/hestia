@@ -120,13 +120,10 @@
   };
   const linkDialog = $('#link-dialog');
   const showNotice = type => {
-    const isDownload = type === 'download';
     const platform = { youtube: 'YouTube', tiktok: 'TikTok' }[type];
-    $('#link-dialog-title').textContent = platform ? `Hestia on ${platform}.` : isDownload ? 'Your next drop is on its way.' : 'Your squad is on its way.';
+    $('#link-dialog-title').textContent = platform ? `Hestia on ${platform}.` : 'Your squad is on its way.';
     $('#link-dialog-copy').textContent = platform
       ? `The official Hestia ${platform} link hasn’t been added yet. Check back for more from the island.`
-      : isDownload
-      ? 'The Hestia launcher download hasn’t been linked on this site yet. Check back once the project team has added the official release.'
       : 'The official Hestia community invite hasn’t been linked on this site yet. Check back soon for the place to meet your squad.';
     linkDialog.showModal();
     document.body.classList.add('modal-open');
@@ -142,11 +139,6 @@
     link.click();
     link.remove();
   };
-  $$('[data-download]').forEach(button => button.addEventListener('click', () => {
-    const url = usableUrl(config.downloadUrl);
-    if (url) visit(url, false);
-    else showNotice('download');
-  }));
   $$('[data-community]').forEach(button => button.addEventListener('click', () => {
     const url = usableUrl(config.discordUrl);
     if (url) visit(url, true);
