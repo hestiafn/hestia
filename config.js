@@ -1,7 +1,6 @@
-/* Set these to the real Hestia links before publishing. Relative URLs also work.
-   Keep empty until a verified link is available; the site shows an honest notice. */
+/* Social destinations live here; the download buttons link directly to the launcher. */
 window.HESTIA_CONFIG = Object.freeze({
-  discordUrl: "",
-  youtubeUrl: "",
-  tiktokUrl: ""
+  discordUrl: "http://discord.gg/hestiamp",
+  youtubeUrl: "https://www.youtube.com/@PrivateUserDev",
+  tiktokUrl: "https://www.tiktok.com/@rewindmp"
 });

@@ -108,26 +108,6 @@
     if (event.matches) setMenu(false);
   });
 
-  // Keep real destinations in config.js; never silently send visitors to another project.
-  const usableUrl = value => {
-    if (typeof value !== 'string' || !value.trim()) return null;
-    try {
-      const url = new URL(value.trim(), window.location.href);
-      if (['https:', 'http:'].includes(url.protocol)) return url.href;
-      if (url.protocol === 'file:' && window.location.protocol === 'file:') return url.href;
-    } catch (_) { /* A missing or malformed destination opens the notice below. */ }
-    return null;
-  };
-  const linkDialog = $('#link-dialog');
-  const showNotice = type => {
-    const platform = { youtube: 'YouTube', tiktok: 'TikTok' }[type];
-    $('#link-dialog-title').textContent = platform ? `Hestia on ${platform}.` : 'Your squad is on its way.';
-    $('#link-dialog-copy').textContent = platform
-      ? `The official Hestia ${platform} link hasn’t been added yet. Check back for more from the island.`
-      : 'The official Hestia community invite hasn’t been linked on this site yet. Check back soon for the place to meet your squad.';
-    linkDialog.showModal();
-    document.body.classList.add('modal-open');
-  };
   const visit = (url, newTab) => {
     const link = document.createElement('a');
     link.href = url;
@@ -140,28 +120,13 @@
     link.remove();
   };
   $$('[data-community]').forEach(button => button.addEventListener('click', () => {
-    const url = usableUrl(config.discordUrl);
-    if (url) visit(url, true);
-    else showNotice('community');
+    visit(config.discordUrl, true);
   }));
 
   $$('[data-social]').forEach(button => button.addEventListener('click', () => {
     const channel = button.dataset.social;
-    const url = usableUrl(config[`${channel}Url`]);
-    if (url) visit(url, true);
-    else showNotice(channel === 'discord' ? 'community' : channel);
+    visit(config[`${channel}Url`], true);
   }));
-  $$('dialog').forEach(dialog => {
-    $$('[data-close-dialog]', dialog).forEach(button => button.addEventListener('click', () => dialog.close()));
-    dialog.addEventListener('click', event => {
-      if (event.target !== dialog) return;
-      const rect = dialog.getBoundingClientRect();
-      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
-    });
-    dialog.addEventListener('close', () => {
-      if (!$('dialog[open]')) document.body.classList.remove('modal-open');
-    });
-  });
   $('[data-year]').textContent = String(new Date().getFullYear());
 
   // A small tilt follows the pointer, and resets when the card is left.

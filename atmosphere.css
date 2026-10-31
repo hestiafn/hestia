@@ -1,8 +1,8 @@
 /* One continuous winter atmosphere, with Neo-inspired glass and edge motion. */
 /* Hide the page scrollbar while preserving native page scrolling. */
 html{scrollbar-width:none;-ms-overflow-style:none}
-.site-dialog,.mobile-nav{scrollbar-width:thin;scrollbar-color:#85b5cc #080f1c}
-@supports selector(::-webkit-scrollbar){.site-dialog,.mobile-nav{scrollbar-width:auto;scrollbar-color:auto}}
+.mobile-nav{scrollbar-width:thin;scrollbar-color:#85b5cc #080f1c}
+@supports selector(::-webkit-scrollbar){.mobile-nav{scrollbar-width:auto;scrollbar-color:auto}}
 html::-webkit-scrollbar{display:none;width:0;height:0}
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-button{display:none;width:0;height:0}
@@ -11,7 +11,7 @@ html::-webkit-scrollbar{display:none;width:0;height:0}
 ::-webkit-scrollbar-thumb:hover{background:#bce7fa}
 ::-webkit-scrollbar-thumb:active{background:#e0f4ff}
 ::-webkit-scrollbar-corner{background:#080f1c}
-@media(forced-colors:active){html,.site-dialog,.mobile-nav{scrollbar-color:auto}::-webkit-scrollbar-track,::-webkit-scrollbar-corner{background:Canvas}::-webkit-scrollbar-thumb{background:CanvasText;border-color:Canvas}}
+@media(forced-colors:active){html,.mobile-nav{scrollbar-color:auto}::-webkit-scrollbar-track,::-webkit-scrollbar-corner{background:Canvas}::-webkit-scrollbar-thumb{background:CanvasText;border-color:Canvas}}
 body{isolation:isolate;background:#080f1c}
 .winter-atmosphere{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#080f1c;--ambient-x:0px;--ambient-y:0px;--ambient-scroll:0px}
 .atmosphere-drift{position:absolute;inset:-100px;transform:translate3d(var(--ambient-x),calc(var(--ambient-y) + var(--ambient-scroll)),0);transition:transform 2.2s cubic-bezier(.2,.8,.2,1)}
@@ -41,7 +41,7 @@ body{isolation:isolate;background:#080f1c}
 .detail-row:hover .detail-mark{transform:translate3d(3px,-3px,0) rotate(-5deg);color:#e2f3ff}
 .launcher-section{padding-top:75px;padding-bottom:135px}
 .launcher-art::before{opacity:.035}
-.launcher-window,.launcher-sticker,.archive-map,.faq-list,.site-dialog,.preview-dialog,.memory-scrim,.archive-image::after{box-shadow:none}
+.launcher-window,.launcher-sticker,.archive-map,.faq-list,.memory-scrim,.archive-image::after{box-shadow:none}
 .launcher-window{border-color:rgba(220,241,255,.24);border-radius:13px}
 .launcher-orbit{border:0;background:radial-gradient(circle,rgba(124,176,222,.12),transparent 70%)}
 .launcher-orbit::before,.launcher-orbit::after{border:0}
