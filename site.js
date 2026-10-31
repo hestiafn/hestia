@@ -5,7 +5,6 @@
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-  const config = window.HESTIA_CONFIG || {};
   const header = $('#site-header');
   const hero = $('.hero');
   const heroContent = $('.hero-content');
@@ -108,25 +107,6 @@
     if (event.matches) setMenu(false);
   });
 
-  const visit = (url, newTab) => {
-    const link = document.createElement('a');
-    link.href = url;
-    if (newTab) {
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-    }
-    document.body.append(link);
-    link.click();
-    link.remove();
-  };
-  $$('[data-community]').forEach(button => button.addEventListener('click', () => {
-    visit(config.discordUrl, true);
-  }));
-
-  $$('[data-social]').forEach(button => button.addEventListener('click', () => {
-    const channel = button.dataset.social;
-    visit(config[`${channel}Url`], true);
-  }));
   $('[data-year]').textContent = String(new Date().getFullYear());
 
   // A small tilt follows the pointer, and resets when the card is left.
